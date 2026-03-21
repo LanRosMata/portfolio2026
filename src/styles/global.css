@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/font/JosefinSans-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Josefin Sans', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-primary-50: #fff3ea;
+  --color-primary-100: #ffe4d1;
+  --color-primary-200: #ffc4a3;
+  --color-primary-300: #ffa170;
+  --color-primary-400: #ff8647;
+  --color-primary-500: #ff7a00;
+  --color-primary-600: #e06000;
+  --color-primary-700: #b84f00;
+  --color-primary-800: #943e00;
+  --color-primary-900: #783500;
+  --color-primary-950: #451b00;
+  --color-primary: var(--color-primary-500);
+
+  --color-secondary: #0a0a0a;
+
+  --color-tertiary-50: #eaf4ff;
+  --color-tertiary-100: #d1e8ff;
+  --color-tertiary-200: #a3d2ff;
+  --color-tertiary-300: #70baff;
+  --color-tertiary-400: #3da2ff;
+  --color-tertiary-500: #0071e3;
+  --color-tertiary-600: #005ebd;
+  --color-tertiary-700: #004d9e;
+  --color-tertiary-800: #003a7a;
+  --color-tertiary-900: #002d61;
+  --color-tertiary-950: #001b3b;
+  --color-tertiary: var(--color-tertiary-500);
+
+  --color-neutral: #f5f5f7;
+}
+
+/* ──────── Liquid Glass Utility ──────── */
+@utility glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+@utility glass-light {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+@utility glass-dark {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ──────── Smooth Scroll ──────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ──────── Selection ──────── */
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-secondary);
+}

@@ -1,0 +1,48 @@
+---
+const links = [
+  { label: "arrmatamoros@gmail.com", href: "mailto:arrmatamoros@gmail.com", icon: "→" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/allan-rigoberto-rosales-matamoros-ba94a7b0/", icon: "→" },
+  { label: "allanrosales.dev", href: "https://allanrosales.dev", icon: "→" },
+];
+---
+
+<section id="contacto" class="py-24 md:py-32 bg-white">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="max-w-4xl">
+      <p class="text-sm font-medium text-primary uppercase tracking-widest mb-6">Contacto</p>
+      <h2 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-secondary leading-[0.95] tracking-tight">
+        Hagamos algo
+        <br />
+        <span class="text-primary">increíble</span>
+        <br />
+        juntos.
+      </h2>
+
+      <p class="mt-8 text-lg text-secondary/40 max-w-lg leading-relaxed">
+        ¿Tienes un proyecto en mente? Me encantaría escucharte. 
+        Trabajemos juntos para crear soluciones digitales de alto impacto.
+      </p>
+    </div>
+
+    <!-- Contact Links -->
+    <div class="mt-16 pt-12 border-t border-secondary/10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            class="group flex items-center justify-between px-6 py-5 rounded-2xl border border-secondary/8 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+          >
+            <span class="text-sm font-medium text-secondary/70 group-hover:text-secondary transition-colors">
+              {link.label}
+            </span>
+            <span class="text-lg text-secondary/20 group-hover:text-primary transition-all duration-300 group-hover:translate-x-1">
+              {link.icon}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

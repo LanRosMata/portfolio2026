@@ -1,0 +1,44 @@
+---
+const year = new Date().getFullYear();
+const navItems = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Stack", href: "#tech-stack" },
+  { label: "Educación", href: "#educacion" },
+];
+---
+
+<footer class="bg-secondary pt-20 pb-10">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <!-- Top: Big branding -->
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 pb-16 border-b border-white/8">
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] tracking-tight">
+        Allan
+        <br />
+        Rosales<span class="text-primary">.</span>
+      </h2>
+      <nav class="flex flex-wrap gap-6">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm text-white/30 hover:text-white transition-colors duration-300"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Bottom -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
+      <p class="text-xs text-white/20">
+        &copy; {year} Allan Rosales. Todos los derechos reservados.
+      </p>
+      <div class="flex gap-6">
+        <a href="#" class="text-white/20 hover:text-primary transition-colors text-xs">Privacidad</a>
+        <a href="#" class="text-white/20 hover:text-primary transition-colors text-xs">Términos</a>
+      </div>
+    </div>
+  </div>
+</footer>

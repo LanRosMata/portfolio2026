@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {
+  variant?: "primary" | "secondary" | "inverted" | "outlined";
+  href?: string;
+  class?: string;
+}
+
+const { variant = "primary", href, class: className, ...props } = Astro.props;
+
+const baseStyles =
+  "inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+
+const variants = {
+  primary:
+    "bg-primary text-white hover:bg-primary-600 focus-visible:ring-primary",
+  secondary:
+    "bg-neutral text-secondary hover:bg-gray-200 focus-visible:ring-secondary",
+  inverted:
+    "bg-secondary text-white hover:bg-black focus-visible:ring-secondary",
+  outlined:
+    "border border-secondary/20 text-secondary hover:bg-neutral hover:border-secondary/40 focus-visible:ring-secondary bg-transparent",
+};
+
+const Element = href ? "a" : "button";
+---
+
+<Element
+  href={href}
+  class:list={[baseStyles, variants[variant], className]}
+  {...props}
+>
+  <slot />
+</Element>

@@ -1,0 +1,142 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const navItems = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Stack", href: "#tech-stack" },
+  { label: "Educación", href: "#educacion" },
+];
+---
+
+<header
+  class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-500", className]}
+  id="main-nav"
+>
+  <nav class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#inicio" class="flex items-center gap-3 group">
+      <span
+        class="text-xl font-bold text-white tracking-tight transition-opacity duration-300 group-hover:opacity-80"
+      >
+        Allan<span class="text-primary">.</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden md:flex items-center gap-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="px-4 py-2 text-[13px] font-medium text-white/50 hover:text-white transition-colors duration-300"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- CTA -->
+    <a
+      href="#contacto"
+      class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-white text-secondary text-[13px] font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+    >
+      Hablemos
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      id="mobile-menu-toggle"
+      aria-label="Abrir menú"
+    >
+      <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="bar-1"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar-2"></span>
+      <span class="w-4 h-0.5 bg-white transition-all duration-300 origin-center" id="bar-3"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    class="md:hidden overflow-hidden transition-all duration-500 max-h-0 opacity-0"
+    id="mobile-menu"
+  >
+    <div class="glass-dark mx-4 mb-4 rounded-2xl p-6 flex flex-col gap-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="mobile-nav-link px-4 py-3 text-base font-medium text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contacto"
+        class="mt-4 px-5 py-3 bg-white text-secondary text-sm font-semibold rounded-full text-center hover:bg-primary hover:text-white transition-all"
+      >
+        Hablemos
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById("main-nav");
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const bar1 = document.getElementById("bar-1");
+  const bar2 = document.getElementById("bar-2");
+  const bar3 = document.getElementById("bar-3");
+  let isOpen = false;
+
+  // Scroll effect — switches to light style when past hero
+  window.addEventListener("scroll", () => {
+    if (!nav) return;
+    if (window.scrollY > 40) {
+      nav.classList.add("glass-dark", "shadow-lg");
+    } else {
+      nav.classList.remove("glass-dark", "shadow-lg");
+    }
+  });
+
+  // Mobile toggle
+  toggle?.addEventListener("click", () => {
+    isOpen = !isOpen;
+    if (menu) {
+      if (isOpen) {
+        menu.style.maxHeight = menu.scrollHeight + "px";
+        menu.style.opacity = "1";
+      } else {
+        menu.style.maxHeight = "0";
+        menu.style.opacity = "0";
+      }
+    }
+    bar1?.classList.toggle("rotate-45", isOpen);
+    bar1?.classList.toggle("translate-y-[4px]", isOpen);
+    bar2?.classList.toggle("opacity-0", isOpen);
+    bar3?.classList.toggle("-rotate-45", isOpen);
+    bar3?.classList.toggle("-translate-y-[4px]", isOpen);
+    bar3?.classList.toggle("w-6", isOpen);
+  });
+
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      isOpen = false;
+      if (menu) {
+        menu.style.maxHeight = "0";
+        menu.style.opacity = "0";
+      }
+      bar1?.classList.remove("rotate-45", "translate-y-[4px]");
+      bar2?.classList.remove("opacity-0");
+      bar3?.classList.remove("-rotate-45", "-translate-y-[4px]", "w-6");
+    });
+  });
+</script>

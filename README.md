@@ -1,46 +1,60 @@
-# Astro Starter Kit: Basics
+# Allan Rosales — Portfolio Personal
 
-```sh
-npm create astro@latest -- --template basics
-```
+Este es el repositorio del portafolio personal de **Allan Rosales**, Ingeniero en Sistemas y Desarrollador Full-Stack. El sitio está diseñado para destacar experiencia, proyectos, stack tecnológico y educación, utilizando un estilo moderno, minimalista y audaz inspirado en enfoques editoriales y de agencias (como Nixtio).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tecnologías Principales
 
-## 🚀 Project Structure
+- **[Astro](https://astro.build/)**: Framework web optimizado para velocidad, generando contenido estático (SSG) de alto rendimiento.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Framework de CSS utility-first para construcción de UI rápida y altamente personalizable.
+- **JavaScript (Vanilla)**: Para interacciones, animaciones dinámicas y menús móviles ligeros.
 
-Inside of your Astro project, you'll see the following folders and files:
+## ✨ Características del Diseño
+
+- **Arquitectura de UI "Nixtio-Style"**: Alternancia entre fondos oscuros y claros con tipografía Josefin Sans a gran escala.
+- **Bento Grids**: Utilizados en la sección de proyectos para mostrar contenido de manera compacta y visualmente atractiva.
+- **Efectos Glassmorphism (Liquid Glass)**: Elementos UI semi-transparentes y bordes sutiles que aportan profundidad sobre fondos oscuros o difuminados.
+- **Responsive Design**: Optimización total desde dispositivos móviles hasta pantallas y resoluciones extra anchas (`max-w-[1400px]`).
+
+## 📁 Estructura del Proyecto
+
+El proyecto sigue la convención estándar de Astro:
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   └── docs/          # Documentos estáticos (ej. Currículum en PDF)
+├── src/
+│   ├── assets/        # Imágenes e iconos procesados por Astro
+│   ├── components/    # Componentes reutilizables (Hero, Navbar, Projects, etc.)
+│   ├── layouts/       # Plantillas base de página (Layout principal)
+│   ├── styles/        # CSS global (Tailwind, tipografías y utilidades personalizadas)
+│   └── pages/         # Páginas principales del sitio (index.astro)
+├── .gitignore
+├── astro.config.mjs   # Configuración de Astro y Tailwind
+├── package.json
+└── tailwind.config.mjs
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🧞 Comandos Locales
 
-## 🧞 Commands
+Todos los comandos se ejecutan desde la raíz del proyecto en la terminal:
 
-All commands are run from the root of the project, from a terminal:
+| Comando | Acción |
+| :--- | :--- |
+| `npm install` | Instala las dependencias del proyecto. |
+| `npm run dev` | Inicia el servidor local de desarrollo en `localhost:4321`. |
+| `npm run build` | Compila el sitio para producción en el directorio `./dist/`. |
+| `npm run preview` | Previsualiza el sitio compilado localmente antes de desplegar. |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🛠 Instalación y Pasos para Ejecutar
 
-## 👀 Want to learn more?
+1. Clona el repositorio.
+2. Asegúrate de tener **Node.js** instalado (versión 18+ recomendada).
+3. Ejecuta `npm install` para instalar todas las dependencias.
+4. Ejecuta `npm run dev` e ingresa en tu navegador a `http://localhost:4321`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🎨 Sobre el Autor
+
+Desarrollador por **Allan Rosales** (@arrmatamoros).
+- **Email**: arrmatamoros@gmail.com
+- **Sitio web**: [allanrosales.dev](https://allanrosales.dev)

@@ -1,0 +1,23 @@
+---
+interface Props {
+  label: string;
+  href: string;
+  icon: string;
+  class?: string;
+}
+
+const { label, href, icon, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    "group flex flex-col items-center gap-3 px-6 py-4 rounded-2xl glass transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-white/20",
+    className,
+  ]}
+>
+  <span class="text-3xl transition-transform duration-300 group-hover:scale-110">{icon}</span>
+  <span class="text-sm font-semibold text-white/90 group-hover:text-white">{label}</span>
+</a>
