@@ -4,12 +4,20 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  keywords?: string;
 }
 
 const {
   title = "Allan Rosales — Ingeniero en Sistemas",
   description = "Portfolio profesional de Allan Rosales. Ingeniero en Sistemas especializado en arquitectura de software, desarrollo web y soluciones digitales de alto impacto.",
+  image = "/image/AllanRosales.jpg",
+  keywords = "Allan Rosales, Ingeniero en Sistemas, Desarrollo web, Arquitectura de software, Portfolio",
 } = Astro.props;
+
+// Construye URLs absolutas para Open Graph y Twitter
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url);
+const socialImageURL = new URL(image, Astro.site || Astro.url);
 ---
 
 <!doctype html>
@@ -18,6 +26,22 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>

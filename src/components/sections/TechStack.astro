@@ -1,0 +1,136 @@
+---
+import SectionLabel from "../ui/SectionLabel.astro";
+import TechIcon from "../ui/TechIcon.astro";
+
+const categories = [
+  {
+    name: "Frontend",
+    icon: "🖥️",
+    techs: [
+      { name: "React", icon: "⚛️" },
+      { name: "Astro", icon: "🚀" },
+      { name: "TypeScript", icon: "🔷" },
+      { name: "Tailwind", icon: "🎨" },
+      { name: "HTML5", icon: "📄" },
+      { name: "CSS3", icon: "🎭" },
+    ],
+  },
+  {
+    name: "Backend",
+    icon: "⚙️",
+    techs: [
+      { name: "Node.js", icon: "💚" },
+      { name: "Express", icon: "🚂" },
+      { name: "PHP", icon: "🐘" },
+      { name: "Java", icon: "☕" },
+      { name: "Payload CMS", icon: "📦" },
+      { name: "Strapi", icon: "🔌" },
+    ],
+  },
+  {
+    name: "Bases de Datos",
+    icon: "🗄️",
+    techs: [
+      { name: "PostgreSQL", icon: "🐘" },
+      { name: "MongoDB", icon: "🍃" },
+      { name: "MySQL", icon: "🐬" },
+      { name: "MariaDB", icon: "🔵" },
+      { name: "Prisma", icon: "💎" },
+    ],
+  },
+  {
+    name: "DevOps",
+    icon: "🔧",
+    techs: [
+      { name: "Docker", icon: "🐳" },
+      { name: "Git", icon: "📦" },
+      { name: "GitHub", icon: "🐙" },
+      { name: "Linux", icon: "🐧" },
+      { name: "Dokploy", icon: "🚀" },
+      { name: "Coolify", icon: "❄️" },
+    ],
+  },
+];
+---
+
+<section id="tech-stack" class="py-24 md:py-32 bg-white">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <SectionLabel text="Tecnologías" />
+      <h2 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-secondary tracking-tight">
+        Mi Stack<span class="text-primary">.</span>
+      </h2>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12" id="tech-tabs">
+      {
+        categories.map((cat, i) => (
+          <button
+            class:list={[
+              "tech-tab px-5 py-2.5 text-[13px] font-semibold rounded-full transition-all duration-300 border",
+              i === 0
+                ? "bg-secondary text-white border-secondary"
+                : "bg-transparent text-secondary/50 border-secondary/10 hover:border-secondary/30 hover:text-secondary",
+            ]}
+            data-tab={i}
+          >
+            <span class="mr-1.5">{cat.icon}</span>
+            {cat.name}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Tech Grids -->
+    <div class="relative">
+      {
+        categories.map((cat, i) => (
+          <div
+            class:list={[
+              "tech-panel grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 rounded-3xl p-8 border border-secondary/5 bg-neutral transition-all duration-500",
+              i === 0
+                ? "opacity-100 relative"
+                : "opacity-0 absolute inset-0 pointer-events-none",
+            ]}
+            data-panel={i}
+          >
+            {cat.techs.map((tech) => (
+              <TechIcon name={tech.name} icon={tech.icon} />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll(".tech-tab");
+  const panels = document.querySelectorAll(".tech-panel");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = (tab as HTMLElement).dataset.tab;
+
+      tabs.forEach((t) => {
+        t.classList.remove("bg-secondary", "text-white", "border-secondary");
+        t.classList.add("bg-transparent", "text-secondary/50", "border-secondary/10");
+      });
+      tab.classList.add("bg-secondary", "text-white", "border-secondary");
+      tab.classList.remove("bg-transparent", "text-secondary/50", "border-secondary/10");
+
+      panels.forEach((panel) => {
+        const p = panel as HTMLElement;
+        if (p.dataset.panel === target) {
+          p.classList.remove("opacity-0", "absolute", "pointer-events-none");
+          p.classList.add("opacity-100", "relative");
+        } else {
+          p.classList.add("opacity-0", "absolute", "pointer-events-none");
+          p.classList.remove("opacity-100", "relative");
+        }
+      });
+    });
+  });
+</script>

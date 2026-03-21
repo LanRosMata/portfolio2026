@@ -1,0 +1,12 @@
+{
+  "name": "imgs-convert",
+  "version": "1.0.0",
+  "description": "Convierte imágenes de cualquier formato a WebP optimizado para web (max 1080px de alto)",
+  "main": "convert.js",
+  "scripts": {
+    "convert": "node convert.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  }
+}

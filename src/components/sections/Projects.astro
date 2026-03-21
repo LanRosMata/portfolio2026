@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import SectionLabel from "../ui/SectionLabel.astro";
+
+import tusdelicias from "../../assets/tusdelicias.png";
+import crgroups from "../../assets/crgroups.png";
+
+const projects = [
+  {
+    title: "Delicias Centroamericanas",
+    year: "2024",
+    imageSrc: tusdelicias,
+  },
+  {
+    title: "CR Groups",
+    year: "2024",
+    imageSrc: crgroups,
+  },
+  {
+    title: "Infraestructura VPS",
+    year: "2023",
+    imageSrc: tusdelicias,
+  },
+];
+---
+
+<section id="proyectos" class="py-24 md:py-32 bg-neutral">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <div>
+        <SectionLabel text="Portfolio" />
+        <h2 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-secondary leading-[1.05] tracking-tight">
+          Proyectos
+          <span class="text-primary">destacados.</span>
+        </h2>
+      </div>
+      <a
+        href="#"
+        class="text-sm font-semibold text-secondary/40 hover:text-primary transition-colors flex items-center gap-2 group"
+      >
+        Ver todos
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Projects Grid — 3 columns -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {projects.map((project) => (
+        <a href="#" class="group block rounded-2xl overflow-hidden bg-white border border-secondary/5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+          <!-- Header -->
+          <div class="flex items-center gap-3 px-5 pt-5 pb-4">
+            <h3 class="text-base font-bold text-secondary">{project.title}</h3>
+            <span class="text-xs text-secondary/30 font-medium">/ {project.year}</span>
+          </div>
+          <!-- Image -->
+          <div class="overflow-hidden h-48 md:h-56">
+            <Image
+              src={project.imageSrc}
+              alt={project.title}
+              width={800}
+              height={500}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
