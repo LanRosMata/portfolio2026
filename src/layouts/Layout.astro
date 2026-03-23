@@ -136,9 +136,7 @@ const socialImageURL = new URL(image, Astro.site || Astro.url);
 
       const revealType = element.dataset.reveal || "up";
       const delay = Number.parseFloat(element.dataset.revealDelay || "0");
-      const start = isMobile
-        ? element.dataset.revealStartMobile || element.dataset.revealStart || "top 50%"
-        : element.dataset.revealStart || "top 50%";
+      const start = element.dataset.revealStart || "top 50%";
 
       const fromVars: gsap.TweenVars = {
         autoAlpha: 0,

@@ -11,7 +11,15 @@ import Footer from "../components/common/Footer.astro";
 ---
 
 <Layout>
-  <Navbar />
+  <Navbar
+    navItems={[
+      { label: "Inicio", href: "#inicio" },
+      { label: "Servicios", href: "#servicios" },
+      { label: "Proyectos", href: "#proyectos" },
+      { label: "Stack", href: "#tech-stack" },
+      { label: "Educación", href: "#educacion" },
+    ]}
+   />
   <main>
     <Hero />
     <About />

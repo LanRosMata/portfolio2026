@@ -50,7 +50,11 @@ const pageTitle = `${title} — Allan Rosales`;
 ---
 
 <Layout title={pageTitle} description={description} image={image} keywords={keywords}>
-  <Navbar />
+  <Navbar
+    navItems={[
+      { label: "Inicio", href: "/" },
+    ]}
+  />
 
   <!-- Project Hero -->
   <ProjectHero

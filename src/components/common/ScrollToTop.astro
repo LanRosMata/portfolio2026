@@ -108,9 +108,6 @@
     }
   };
 
-  // Run on initial page load (Astro loads modules deferred, so DOM is ready)
-  initScrollToTop();
-
-  // Re-run on View Transition navigations (if enabled)
+  // Re-run on View Transition navigations
   document.addEventListener('astro:page-load', initScrollToTop);
 </script>

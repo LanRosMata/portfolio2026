@@ -1,31 +1,29 @@
 ---
-interface Props {
-  class?: string;
+interface NavItem {
+  label: string;
+  href: string;
 }
 
-const { class: className } = Astro.props;
+interface Props {
+  class?: string;
+  navItems: NavItem[];
+}
 
-const navItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Stack", href: "#tech-stack" },
-  { label: "Educación", href: "#educacion" },
-];
+const { class: className, navItems } = Astro.props;
 ---
 
 <header
   class:list={["fixed top-0 left-0 right-0 z-50 transition-all duration-500", className]}
   id="main-nav"
-  transition:persist
+  transition:animate="none"
 >
   <nav class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
     <!-- Logo -->
-    <a href="#inicio" class="flex items-center gap-3 group">
+    <a href="/#inicio" class="flex items-center gap-3 group">
       <span
         class="text-xl font-bold text-white tracking-tight transition-opacity duration-300 group-hover:opacity-80"
       >
-        Allan<span class="text-primary">.</span>
+        Allan<span class="text-primary font-bold">/</span>Rosales<span class="text-primary font-black text-4xl">.</span>
       </span>
     </a>
 
@@ -45,7 +43,7 @@ const navItems = [
 
     <!-- CTA -->
     <a
-      href="#contacto"
+      href="/#contacto"
       class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-white text-secondary text-[13px] font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-300"
     >
       Hablemos
@@ -92,7 +90,7 @@ const navItems = [
 <script>
   let scrollListenerAdded = false;
 
-  function initNavbar() {
+  document.addEventListener("astro:page-load", () => {
     const nav = document.getElementById("main-nav");
     const toggle = document.getElementById("mobile-menu-toggle");
     const menu = document.getElementById("mobile-menu");
@@ -107,8 +105,9 @@ const navItems = [
       menu.style.opacity = "0";
     }
 
-    // Scroll effect — switches to glass style when past hero
+    // Scroll listener — only add once globally
     if (!scrollListenerAdded) {
+      scrollListenerAdded = true;
       window.addEventListener("scroll", () => {
         const currentNav = document.getElementById("main-nav");
         if (!currentNav) return;
@@ -118,7 +117,6 @@ const navItems = [
           currentNav.classList.remove("glass-dark", "shadow-lg");
         }
       });
-      scrollListenerAdded = true;
     }
 
     // Apply initial scroll state
@@ -162,7 +160,5 @@ const navItems = [
         bar3?.classList.remove("-rotate-45", "-translate-y-[4px]", "w-6");
       });
     });
-  }
-
-  document.addEventListener("astro:page-load", initNavbar);
+  });
 </script>
