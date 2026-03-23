@@ -14,8 +14,13 @@ const links = [
 ];
 ---
 
-<section id="contacto" class="py-24 md:py-32 bg-white">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+<section id="contacto" class="relative overflow-hidden py-24 md:py-32 bg-white">
+  <div class="ambient-layer" aria-hidden="true">
+    <span class="ambient-blob ambient-primary ambient-top-right"></span>
+    <span class="ambient-blob ambient-tertiary ambient-bottom-left ambient-delay-2"></span>
+  </div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
     <div class="max-w-4xl">
       <p
         class="text-sm font-medium text-primary uppercase tracking-widest mb-6"

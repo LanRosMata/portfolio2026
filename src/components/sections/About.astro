@@ -29,8 +29,13 @@ const services = [
 ];
 ---
 
-<section id="servicios" class="py-24 md:py-32 bg-white">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+<section id="servicios" class="relative overflow-hidden py-24 md:py-32 bg-white">
+  <div class="ambient-layer" aria-hidden="true">
+    <span class="ambient-blob ambient-primary ambient-top-right"></span>
+    <span class="ambient-blob ambient-tertiary ambient-bottom-left ambient-delay-2"></span>
+  </div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
       <div data-reveal="up">

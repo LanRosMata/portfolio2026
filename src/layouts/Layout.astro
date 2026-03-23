@@ -120,11 +120,25 @@ const socialImageURL = new URL(image, Astro.site || Astro.url);
     const animations: gsap.core.Tween[] = [];
 
     const revealElements = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
     revealElements.forEach((element) => {
+      if (isMobile && element.dataset.revealMobile === "off") {
+        gsap.set(element, {
+          autoAlpha: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          clearProps: "transform,opacity,visibility",
+        });
+        return;
+      }
+
       const revealType = element.dataset.reveal || "up";
       const delay = Number.parseFloat(element.dataset.revealDelay || "0");
-      const start = element.dataset.revealStart || "top 50%";
+      const start = isMobile
+        ? element.dataset.revealStartMobile || element.dataset.revealStart || "top 50%"
+        : element.dataset.revealStart || "top 50%";
 
       const fromVars: gsap.TweenVars = {
         autoAlpha: 0,

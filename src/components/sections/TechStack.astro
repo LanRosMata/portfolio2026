@@ -53,8 +53,13 @@ const categories = [
 ];
 ---
 
-<section id="tech-stack" class="py-24 md:py-32 bg-white">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+<section id="tech-stack" class="relative overflow-hidden py-24 md:py-32 bg-white">
+  <div class="ambient-layer" aria-hidden="true">
+    <span class="ambient-blob ambient-tertiary ambient-top-right"></span>
+    <span class="ambient-blob ambient-primary ambient-bottom-left ambient-delay-3"></span>
+  </div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10">
     <!-- Header -->
     <div class="text-center mb-16" data-reveal="up" data-reveal-start="top 72%">
       <SectionLabel text="Tecnologías" />

@@ -147,6 +147,24 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
+/* ──────── Fallback: sin soporte para backdrop-filter ──────── */
+/* En Firefox antiguo/Android sin soporte el fondo queda translúcido sin blur;
+   este bloque lo hace opaco para mantener la legibilidad. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: rgba(30, 30, 30, 0.96);
+  }
+  .glass-light {
+    background: rgba(245, 245, 247, 0.98);
+  }
+  .glass-dark {
+    background: rgba(10, 10, 10, 0.95);
+  }
+  .glass-card {
+    background: rgba(245, 245, 247, 0.98);
+  }
+}
+
 /* ──────── Smooth Scroll ──────── */
 html {
   scroll-behavior: smooth;
@@ -156,4 +174,86 @@ html {
 ::selection {
   background-color: var(--color-primary-200);
   color: var(--color-secondary);
+}
+
+/* ──────── Ambient Section Shapes ──────── */
+.ambient-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-blob {
+  position: absolute;
+  width: min(44vw, 460px);
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.45;
+  transform: translate3d(0, 0, 0);
+  animation: ambient-float 14s ease-in-out infinite;
+}
+
+.ambient-primary {
+  background: rgba(255, 122, 0, 0.2);
+}
+
+.ambient-tertiary {
+  background: rgba(0, 113, 227, 0.16);
+}
+
+.ambient-soft {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ambient-top-right {
+  top: -18%;
+  right: -10%;
+}
+
+.ambient-bottom-left {
+  bottom: -22%;
+  left: -12%;
+}
+
+.ambient-mid-right {
+  top: 24%;
+  right: -14%;
+}
+
+.ambient-delay-2 {
+  animation-delay: -5s;
+}
+
+.ambient-delay-3 {
+  animation-delay: -9s;
+}
+
+@keyframes ambient-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(18px, -22px, 0) scale(1.08);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .ambient-blob {
+    width: 68vw;
+    filter: blur(72px);
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-blob {
+    animation: none;
+  }
 }

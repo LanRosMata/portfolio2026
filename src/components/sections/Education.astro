@@ -15,7 +15,11 @@ const certifications = [
 ---
 
 <section id="educacion" class="py-24 md:py-32 bg-secondary text-white relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[160px]"></div>
+  <div class="ambient-layer" aria-hidden="true">
+    <span class="ambient-blob ambient-primary ambient-top-right"></span>
+    <span class="ambient-blob ambient-tertiary ambient-bottom-left ambient-delay-2"></span>
+    <span class="ambient-blob ambient-soft ambient-mid-right ambient-delay-3"></span>
+  </div>
 
   <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
@@ -53,16 +57,16 @@ const certifications = [
         <!-- Compact List -->
         <div class="space-y-px rounded-2xl overflow-hidden">
           {certifications.map((cert, i) => (
-            <div class="flex items-center justify-between gap-4 px-5 py-3.5 bg-white/[0.03] hover:bg-white/[0.06] transition-colors duration-300 group" data-reveal="up" data-reveal-delay={(i * 0.035).toFixed(2)} data-reveal-start="top 75%">
-              <div class="flex items-center gap-4 min-w-0">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 px-5 py-3.5 bg-white/[0.03] hover:bg-white/[0.06] transition-colors duration-300 group" data-reveal="up" data-reveal-delay={(i * 0.035).toFixed(2)} data-reveal-start="top 75%" data-reveal-start-mobile="top 92%">
+              <div class="flex items-start gap-4 min-w-0 w-full sm:w-auto">
                 <span class="text-xs font-mono text-white/20 w-5 shrink-0">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span class="text-sm font-medium text-white/70 group-hover:text-white transition-colors truncate">
+                <span class="text-sm font-medium text-white/70 group-hover:text-white transition-colors whitespace-normal break-words leading-snug">
                   {cert.title}
                 </span>
               </div>
-              <span class="text-xs font-medium text-white/25 shrink-0">{cert.issuer}</span>
+              <span class="text-xs font-medium text-white/25 shrink-0 self-end sm:self-auto">{cert.issuer}</span>
             </div>
           ))}
         </div>
