@@ -34,7 +34,7 @@ const projects = [
   <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-      <div>
+      <div data-reveal="up">
         <SectionLabel text="Portfolio" />
         <h2 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-secondary leading-[1.05] tracking-tight">
           Proyectos
@@ -44,6 +44,8 @@ const projects = [
       <a
         href="#"
         class="text-sm font-semibold text-secondary/40 hover:text-primary transition-colors flex items-center gap-2 group"
+        data-reveal="left"
+        data-reveal-delay="0.08"
       >
         Ver todos
         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -54,12 +56,15 @@ const projects = [
 
     <!-- Projects Grid — 3 columns -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {projects.map((project) => (
+      {projects.map((project, i) => (
         <a 
           href={project.url} 
           target={project.url.startsWith('http') ? '_blank' : '_self'}
           rel={project.url.startsWith('http') ? 'noopener noreferrer' : ''}
           class="group flex flex-col rounded-2xl overflow-hidden bg-white border border-secondary/5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+          data-reveal="up"
+          data-reveal-delay={(i * 0.07).toFixed(2)}
+          data-reveal-start="top 68%"
         >
           <!-- Header -->
           <div class="flex flex-col gap-3 px-5 pt-5 pb-4">

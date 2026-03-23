@@ -33,7 +33,7 @@ const services = [
   <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-      <div>
+      <div data-reveal="up">
         <SectionLabel text="Servicios" />
         <h2 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-secondary leading-[1.05] tracking-tight">
           Soluciones que
@@ -41,7 +41,7 @@ const services = [
           <span class="text-primary">transforman</span> negocios.
         </h2>
       </div>
-      <p class="text-secondary/50 max-w-md text-base leading-relaxed">
+      <p class="text-secondary/50 max-w-md text-base leading-relaxed" data-reveal="right" data-reveal-delay="0.08">
         Combino ingeniería de software con diseño centrado en el usuario para crear 
         experiencias digitales que generan resultados reales.
       </p>
@@ -49,8 +49,8 @@ const services = [
 
     <!-- Services Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-secondary/10 rounded-3xl overflow-hidden border border-secondary/10">
-      {services.map((service) => (
-        <div class="bg-white p-8 md:p-10 group hover:bg-neutral transition-colors duration-500">
+      {services.map((service, i) => (
+        <div class="bg-white p-8 md:p-10 group hover:bg-neutral transition-colors duration-500" data-reveal="up" data-reveal-delay={(i * 0.08).toFixed(2)} data-reveal-start="top 68%">
           <div class="flex items-start justify-between mb-6">
             <span class="text-5xl font-bold text-secondary/5 group-hover:text-primary/10 transition-colors duration-500">
               {service.number}
