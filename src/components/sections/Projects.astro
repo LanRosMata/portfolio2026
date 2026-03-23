@@ -10,16 +10,22 @@ const projects = [
     title: "Delicias Centroamericanas",
     year: "2024",
     imageSrc: tusdelicias,
+    url: "/proyectos/deliciasca",
+    tags: ["Astro", "PayloadCMS", "TailwindCSS"]
   },
   {
     title: "CR Groups",
-    year: "2024",
+    year: "2025",
     imageSrc: crgroups,
+    url: "/proyectos/crgroups",
+    tags: ["Astro", "PayloadCMS", "TailwindCSS"]
   },
   {
     title: "Infraestructura VPS",
     year: "2023",
     imageSrc: tusdelicias,
+    url: "#",
+    tags: ["VPS", "Linux"]
   },
 ];
 ---
@@ -49,14 +55,38 @@ const projects = [
     <!-- Projects Grid — 3 columns -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {projects.map((project) => (
-        <a href="#" class="group block rounded-2xl overflow-hidden bg-white border border-secondary/5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+        <a 
+          href={project.url} 
+          target={project.url.startsWith('http') ? '_blank' : '_self'}
+          rel={project.url.startsWith('http') ? 'noopener noreferrer' : ''}
+          class="group flex flex-col rounded-2xl overflow-hidden bg-white border border-secondary/5 transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+        >
           <!-- Header -->
-          <div class="flex items-center gap-3 px-5 pt-5 pb-4">
-            <h3 class="text-base font-bold text-secondary">{project.title}</h3>
-            <span class="text-xs text-secondary/30 font-medium">/ {project.year}</span>
+          <div class="flex flex-col gap-3 px-5 pt-5 pb-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <h3 class="text-base font-bold text-secondary group-hover:text-primary transition-colors">{project.title}</h3>
+                <span class="text-xs text-secondary/30 font-semibold">/ {project.year}</span>
+              </div>
+              <svg class="w-4 h-4 text-primary opacity-0 -translate-x-2 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </div>
+            
+            {/* Tags area */}
+            {project.tags && project.tags.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 mt-1">
+                {project.tags.map(tag => (
+                  <span class="text-[0.65rem] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
+          
           <!-- Image -->
-          <div class="overflow-hidden h-48 md:h-56">
+          <div class="overflow-hidden h-48 md:h-56 mt-auto">
             <Image
               src={project.imageSrc}
               alt={project.title}

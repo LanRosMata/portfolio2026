@@ -1,0 +1,507 @@
+---
+interface Props {
+  /** Título principal del proyecto */
+  title: string;
+  /** Subtítulo o descripción corta */
+  subtitle?: string;
+  /** Etiquetas/tags del proyecto (ej: ["Astro", "React", "TailwindCSS"]) */
+  tags?: string[];
+  /** Año del proyecto */
+  year?: string;
+  /** Rol desempeñado */
+  role?: string;
+  /** Cliente o empresa */
+  client?: string;
+  /** URL de la imagen hero (ruta pública, ej: "/img/proyecto.jpg") */
+  heroImage?: string;
+  /** Color de acento personalizado (HSL o hex, default: primary) */
+  accentColor?: string;
+  /** URL del sitio en vivo */
+  liveUrl?: string;
+  /** URL del repositorio */
+  repoUrl?: string;
+}
+
+const {
+  title,
+  subtitle,
+  tags = [],
+  year,
+  role,
+  client,
+  heroImage,
+  accentColor,
+  liveUrl,
+  repoUrl,
+} = Astro.props;
+
+const metaItems = [
+  { label: "Año", value: year },
+  { label: "Rol", value: role },
+  { label: "Cliente", value: client },
+].filter((item) => item.value);
+---
+
+<section
+  class="project-hero relative overflow-hidden bg-secondary"
+  style={accentColor ? `--accent: ${accentColor};` : ""}
+>
+  <!-- Ambient glow -->
+  <div class="hero-glow"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <!-- Back link -->
+    <a href="/" class="back-link group">
+      <svg
+        class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+      </svg>
+      <span>Volver al inicio</span>
+    </a>
+
+    <div class="hero-grid">
+      <!-- Text Column -->
+      <div class="hero-text">
+        <!-- Tags -->
+        {
+          tags.length > 0 && (
+            <div class="tags-row">
+              {tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )
+        }
+
+        <!-- Title -->
+        <h1 class="hero-title">
+          {title}<span class="accent-dot">.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+
+        <!-- Meta info -->
+        {
+          metaItems.length > 0 && (
+            <div class="meta-row">
+              {metaItems.map((item) => (
+                <div class="meta-item">
+                  <span class="meta-label">{item.label}</span>
+                  <span class="meta-value">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          )
+        }
+
+        <!-- Action buttons -->
+        {
+          (liveUrl || repoUrl) && (
+            <div class="actions-row">
+              {liveUrl && (
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    />
+                  </svg>
+                  Ver sitio en vivo
+                </a>
+              )}
+              {repoUrl && (
+                <a
+                  href={repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-secondary"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                  Repositorio
+                </a>
+              )}
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Image Column -->
+      {
+        heroImage && (
+          <div class="hero-image-col">
+            <div class="hero-image-wrapper">
+              <div class="hero-image-glow" />
+              <img
+                src={heroImage}
+                alt={`Captura de ${title}`}
+                class="hero-image"
+                loading="eager"
+              />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Bottom divider -->
+  <div class="hero-divider"></div>
+</section>
+
+<style>
+  .project-hero {
+    --accent: var(--color-primary);
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4rem;
+  }
+
+  /* ── Ambient glow ── */
+  .hero-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    height: 80%;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--accent) 15%, transparent),
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Content container ── */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 2rem;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-content {
+      padding: 6rem 2.5rem 3rem;
+    }
+  }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    margin-bottom: 3rem;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* ── Grid ── */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* ── Text ── */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Tags */
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    transition: all 0.3s ease;
+  }
+
+  .tag:hover {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+
+  /* Title */
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: white;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .accent-dot {
+    color: var(--accent);
+  }
+
+  /* Subtitle */
+  .hero-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.4);
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* Meta */
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 0.5rem;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .meta-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .meta-value {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* Actions */
+  .actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    background: white;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* ── Image ── */
+  .hero-image-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-image-col {
+      justify-content: flex-end;
+    }
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .hero-image-glow {
+    position: absolute;
+    inset: -2rem;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--accent) 20%, transparent),
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-image {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 70vh; /* Permite ver la imagen completa y restringe el alto máximo */
+    object-fit: contain;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-image-wrapper:hover .hero-image {
+    transform: scale(1.02);
+  }
+
+  /* ── Divider ── */
+  .hero-divider {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--accent) 30%, transparent) 30%,
+      color-mix(in srgb, var(--accent) 30%, transparent) 70%,
+      transparent
+    );
+  }
+
+  /* ── Entrance animations ── */
+  .back-link,
+  .tags-row,
+  .hero-title,
+  .hero-subtitle,
+  .meta-row,
+  .actions-row,
+  .hero-image-col {
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .back-link {
+    animation-delay: 0.1s;
+  }
+  .tags-row {
+    animation-delay: 0.15s;
+  }
+  .hero-title {
+    animation-delay: 0.2s;
+  }
+  .hero-subtitle {
+    animation-delay: 0.3s;
+  }
+  .meta-row {
+    animation-delay: 0.4s;
+  }
+  .actions-row {
+    animation-delay: 0.45s;
+  }
+  .hero-image-col {
+    animation-delay: 0.35s;
+  }
+
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
